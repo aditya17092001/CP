@@ -2,7 +2,7 @@
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-// public class DoraAndCpp {
+public class DoraAndCpp {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int t = s.nextInt();
