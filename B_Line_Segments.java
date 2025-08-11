@@ -13,36 +13,28 @@ public class B_Line_Segments{
             int e[] = new int[n];
 
             for(int i = 0; i < n; i++) e[i] = s.nextInt();
-            solve(n, a, b, c, d, e);
+            System.out.println(solve(n, a, b, c, d, e));
         }
     }
 
-    public static void solve(int n, int a, int b, int c, int d, int e[]) {
-        if(a == b && b == c && c == d) {
-            HashSet<Integer> h = new HashSet<>();
-            for(int i: e) {
-                if(h.contains(i)) h.remove(i);
-                else h.add(i);
-            }
-
-            if(h.isEmpty()) System.out.println("Yes");
-            else System.out.println("No");
-            return;
-        }
-
+    public static String solve(int n, int a, int b, int c, int d, int e[]) {
         double dist = distance(a, b, c, d);
+        
+        long max = 0, sumOuter = 0, sumInner = 0;
+        for(int i: e) {
+            sumOuter += i;
+            max = Math.max(max, i);
+        }
+        sumInner = Math.max(2 * max - sumOuter, 0);
 
-        int sum = 0; 
-        for(int i: e) sum += i;
+        if((sumOuter * sumOuter < dist) || (sumInner * sumInner > dist)) return "No";
 
-        if(sum >= dist) System.out.println("Yes");
-        else System.out.println("No");
+        return "Yes";
     }
 
     public static double distance(int a, int b, int c, int d) {
-        double x = (a-c)*(a-c);
-        double y = (b-d)*(b-d);
-        return Math.sqrt((x+y));
+        double dx = (double) a - c;
+        double dy = (double) b - d;
+        return ((dx * dx) + (dy * dy));
     }
 }
-
