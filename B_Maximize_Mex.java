@@ -18,38 +18,20 @@ public class B_Maximize_Mex {
     public static int solve(int n, int x, int a[]) {
         Arrays.sort(a);
 
-        HashMap<Integer, Integer> m = new HashMap<>();
+        if(a[0] != 0) return 0;
 
-        ArrayList<Integer> l = new ArrayList<>();
+        int freq[] = new int[n+1];
+
+        for(int i: a) {
+            if(i <= n) freq[i]++;
+        }
+
         for(int i = 0; i < n; i++) {
-            m.put(a[i], m.getOrDefault(a[i], 0) + 1);
-            if(i > 0 && a[i-1] == a[i]) l.add(a[i]);
+            if(freq[i] == 0) return i;
+            else if(freq[i] > 1 && i + x <= n) freq[i+x] += freq[i]-1;
         }
 
-        if(!m.containsKey(0)) return 0; 
-
-        for(int i = 0; i < l.size(); i++) {
-            int j = 1;
-            while(true) {
-                int t = (x*j) + l.get(i);
-                if(t > n || !m.containsKey(t)) {
-                    m.put(t, 1);
-                    break;
-                }
-                j++;
-            }
-        }
-
-        int ans = -1; 
-
-        for(int i = 0; i <= n; i++) {
-            if(!m.containsKey(i)) {
-                ans = i;
-                return ans;
-            }
-        }
-
-        return ans == -1 ? n : ans;
+        return n;
     }
 }
 
