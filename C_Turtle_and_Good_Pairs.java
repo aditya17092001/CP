@@ -1,15 +1,5 @@
 import java.util.*;
 
-class Pair {
-    char c;
-    int freq;
-
-    Pair(char c, int freq) {
-        this.c = c;
-        this.freq = freq;
-    }
-}
-
 public class C_Turtle_and_Good_Pairs{
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
@@ -51,3 +41,12 @@ public class C_Turtle_and_Good_Pairs{
     }
 }
 
+class Pair {
+    char c;
+    int freq;
+
+    Pair(char c, int freq) {
+        this.c = c;
+        this.freq = freq;
+    }
+}
